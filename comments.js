@@ -1,14 +1,14 @@
-//create web server
+// create web server
 const express = require('express');
-const app = express();
-const port = 3000;
+const commentController = require('/controllers/comment');
 
-// Define a simple route
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+const app = express ();
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.get ('/', commentController.comment_list);
+app.get ('/create', commentController.comment_create_get);
+app.post ('/create', commentController.comment_create_post);
+app.get ('/:id/delete', commentController.comment_delete);
+
+app.listen(3000, () => {
+    console.log('Server is listening on port 3000')
 });
